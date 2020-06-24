@@ -27,20 +27,16 @@ Route::group(['middleware'=>['guest']], function () {
   Route::redirect('/contacts', '/login');
   Route::redirect('/home', '/login');
 });
-*/
-
-Route::group(['middleware'=>['guest']], function () {
-  Route::view('/', 'home');
-  Route::get('/contacts', function() {return redirect('login');});
-});
-
 Route::group(['middleware'=>['auth']], function () {
   Route::get('/', function() {return redirect('contacts');});
   Route::get('/home', function() {return redirect('contacts');});
 });
+*/
 
+Route::get('/', function() {return view('home');});
 Auth::routes();
 
-Route::resource('contacts', 'ContactController');
-Route::get('/home', 'HomeController@index');
+//Route::resource('contacts', 'ContactController');
+Route::resource('contacts', 'ContactController')->middleware(['auth']);
+//Route::get('/home', 'HomeController@index');
 //Route::get('/home', 'HomeController@index')->name('home');
