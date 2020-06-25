@@ -9,6 +9,8 @@
       </div>
     @endif
 
+    <div>
+    </div>
     @if(Auth::check())
     <h1>Contacts</h1>
     <table class="table table-sm table-responsive table-hover">
