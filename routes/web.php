@@ -31,12 +31,60 @@ Route::group(['middleware'=>['auth']], function () {
   Route::get('/', function() {return redirect('contacts');});
   Route::get('/home', function() {return redirect('contacts');});
 });
+Route::get($uri, $callback);
+Route::post($uri, $callback);
+Route::put($uri, $callback);
+Route::patch($uri, $callback);
+Route::delete($uri, $callback);
+Route::options($uri, $callback);
+Route::get('user/{id}', function ($id) {
+    return 'User '.$id;
+});
 */
 
-Route::get('/', function() {return view('home');});
+Route::group(['middleware'=>['auth']], function () {
+  //Route::redirect('/', 'ContactController@index');
+  //Route::get('contacts', 'ContactController@index');
+  Route::get('contacts', [
+    'as' => 'contacts.index',
+    'uses' => 'ContactController@index'
+  ]);
+  Route::get('contacts/contact', [
+    'as' => 'contacts.create',
+    'uses' => 'ContactController@create'
+  ]);
+  Route::get('contacts/{contact}', [
+    'as' => 'contacts.show',
+    'uses' => 'ContactController@show'
+  ]);
+  Route::get('contacts/{contact}/edit', [
+    'as' => 'contacts.edit',
+    'uses' => 'ContactController@edit'
+  ]);
+  Route::post('contacts/{contact}', [
+    'as' => 'contacts.store',
+    'uses' => 'ContactController@store'
+  ]);
+  Route::delete('contacts/{contact}', [
+    'as' => 'contacts.destroy',
+    'uses' => 'ContactController@destroy'
+  ]);
+  Route::post('contacts/{contact}', [
+    'as' => 'contacts.destroy',
+    'uses' => 'ContactController@destroy'
+  ]);
+  Route::patch('contacts/{contact}', [
+    'as' => 'contacts.update',
+    'uses' => 'ContactController@update'
+  ]);
+  Route::put('contacts/{contact}', [
+    'as' => 'contacts.update',
+    'uses' => 'ContactController@update'
+  ]);
+});
+// Route::resource('contacts', 'ContactController')->middleware('auth');
 Auth::routes();
+Route::get('/', function() {return view('home');});
 
-//Route::resource('contacts', 'ContactController');
-Route::resource('contacts', 'ContactController')->middleware(['auth']);
 //Route::get('/home', 'HomeController@index');
 //Route::get('/home', 'HomeController@index')->name('home');

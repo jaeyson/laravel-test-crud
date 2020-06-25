@@ -47,13 +47,11 @@ class ContactController extends Controller
             'address'=>'required'
         ]);
 
-        $user_id = Auth::id();
-
         (new Contact([
             'first_name'=> $request->get('first_name'),
             'last_name'=> $request->get('last_name'),
             'address'=> $request->get('address'),
-            'user_id'=> $user_id
+            'user_id'=> Auth::id()
         ]))->save();
 
         return redirect('/contacts')->with('success', 'saved...');

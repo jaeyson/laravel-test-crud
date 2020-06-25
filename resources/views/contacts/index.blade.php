@@ -9,23 +9,22 @@
       </div>
     @endif
 
-    <div>
-    </div>
     @if(Auth::check())
-    <h1>Contacts</h1>
-    <table class="table table-sm table-responsive table-hover">
-      <thead class="thead-dark">
-        <tr>
-          <td>First name</td>
-          <td>Last name</td>
-          <td>Address</td>
-          <td></td>
-          <td></td>
-        </tr>
-      </thead>
-        @if(Auth::id() == $contacts[0]["user_id"])
-          @foreach($contacts as $contact)
-            <tbody>
+    @if(empty($contacts->count()))
+      <h1>Contacts</h1>
+      <table class="table table-sm table-responsive table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <td>First name</td>
+            <td>Last name</td>
+            <td>Address</td>
+            <td></td>
+            <td></td>
+          </tr>
+        </thead>
+      @foreach($contacts as $contact)
+        @if(Auth::id() == $contact["user_id"])
+        <tbody>
             <tr>
               <td>{{$contact->first_name}}</td>
               <td>{{$contact->last_name}}</td>
@@ -43,11 +42,14 @@
                 </form>
               </td>
             </tr>
-            </tbody>
-          @endforeach
+        </tbody>
         @endif
-    </table>
-    <a href="{{ route('contacts.create') }}" class="btn btn-sm btn-primary">add contacts here</a>
+      @endforeach
+      </table>
+      @else
+        <h1>Your contacts is empty :(</h1>
+      @endif
+      <a href="{{ route('contacts.create') }}" class="btn btn-sm btn-primary">add contacts here</a>
     @endif
   </div>
 </div>

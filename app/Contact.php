@@ -17,10 +17,8 @@ class Contact extends Model
       'user_id'
     ];
 
-    /**
     public function user()
     {
-      return $this->belongsTo('App\User', 'foreign_key');
+      return $this->belongsTo('App\User', 'user_id');
     }
-    **/
 }
