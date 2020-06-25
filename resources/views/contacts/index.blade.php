@@ -21,7 +21,7 @@
           <td></td>
         </tr>
       </thead>
-        @if(Auth::id() == $contacts[0]->user_id)
+        @if(Auth::id() == $contacts[0]["user_id"])
           @foreach($contacts as $contact)
             <tbody>
             <tr>
