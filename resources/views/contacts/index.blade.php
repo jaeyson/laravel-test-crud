@@ -9,8 +9,12 @@
       </div>
     @endif
 
-    @if(Auth::check())
-    @if(empty($contacts->count()))
+    @php
+      print_r(gettype(Auth::user()));
+      var_dump($contacts->count())
+    @endphp
+
+    @if(!empty($contacts->count()))
       <h1>Contacts</h1>
       <table class="table table-sm table-responsive table-hover">
         <thead class="thead-dark">
@@ -23,7 +27,6 @@
           </tr>
         </thead>
       @foreach($contacts as $contact)
-        @if(Auth::id() == $contact["user_id"])
         <tbody>
             <tr>
               <td>{{$contact->first_name}}</td>
@@ -43,14 +46,12 @@
               </td>
             </tr>
         </tbody>
-        @endif
       @endforeach
       </table>
-      @else
-        <h1>Your contacts is empty :(</h1>
-      @endif
-      <a href="{{ route('contacts.create') }}" class="btn btn-sm btn-primary">add contacts here</a>
+    @else
+      <h1>your contact looks empty :(</h1>
     @endif
+    <a href="{{ route('contacts.create') }}" class="btn btn-sm btn-primary">add contacts here</a>
   </div>
 </div>
 @endsection

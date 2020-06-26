@@ -39,6 +39,6 @@ class User extends Authenticatable
 
     public function contact()
     {
-        return $this->hasOne('App\Contact');
+        return $this->hasOne('App\Contact', 'user_id');
     }
 }
