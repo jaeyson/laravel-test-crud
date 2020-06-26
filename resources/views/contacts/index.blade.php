@@ -9,11 +9,6 @@
       </div>
     @endif
 
-    @php
-      print_r(gettype(Auth::user()));
-      var_dump($contacts->count())
-    @endphp
-
     @if(!empty($contacts->count()))
       <h1>Contacts</h1>
       <table class="table table-sm table-responsive table-hover">

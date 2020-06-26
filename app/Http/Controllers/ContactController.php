@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 //use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use App\Contact;
 
 class ContactController extends Controller
@@ -79,7 +78,8 @@ class ContactController extends Controller
     {
         $contact = Contact::find($id);
 
-        return view('contacts.edit', compact('contact'));
+        //return view('contacts.edit', compact('contact'));
+        return view('contacts.edit')->with('contact', $contact);
     }
 
     /**

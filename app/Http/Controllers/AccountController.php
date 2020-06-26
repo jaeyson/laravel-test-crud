@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+// use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 
 class AccountController extends Controller
 {
-  public function index()
+  //public function show(int $id) : \Illuminate\Http\Response
+  public function show(int $id)
   {
-    $user = User::all();
+    $user = User::where('id', $id)->first();
 
-    return view('account')->with('users', $user);
+    return view('accounts.index')->with('user', $user);
   }
 }

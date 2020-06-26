@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row">
-  <div class="col-sm-8 offset-sm-2">
-    <div class="display-3">update a contact</div>
+<div class="row justify-content-center">
+  <div class="col-sm-4">
+    <h3>Update contact</h3>
 
     @if ($errors->any())
     <div class="alert alert-danger">
