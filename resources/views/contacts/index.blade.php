@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', $title)
 @section('content')
 <div class="row">
   <div class="offset-2">

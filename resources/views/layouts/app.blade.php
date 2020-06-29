@@ -1,3 +1,7 @@
+@php
+    $user_id = Auth::id();
+@endphp
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -7,7 +11,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- <title>{{ config('app.name', 'Laravel') }}</title> -->
+    <title>@yield('title', config('app.name'))</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -55,8 +60,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('accounts.show', Auth::id()) }}">
-                                        Account
+                                    <a class="dropdown-item" href="{{ route('accounts.edit', $user_id) }}">
+                                        Account Settings
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('profiles.show', $user_id) }}">
+                                        Profile
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

@@ -9,6 +9,13 @@ use App\Contact;
 
 class ContactController extends Controller
 {
+
+    // All actions are guarded by auth
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,10 +23,11 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::where('user_id', Auth::id())->get();
+        //$contacts = Contact::where('user_id', Auth::id())->get();
+        $contacts = Contact::find(Auth::id())->get();
+        $title = Auth::user()->name . ": Contact List";
 
-        //return view('contacts.index', compact('contacts'));
-        return view('contacts.index')->with('contacts', $contacts);
+        return view('contacts.index', compact('contacts', 'title'));
     }
 
     /**
@@ -58,17 +66,6 @@ class ContactController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -77,9 +74,10 @@ class ContactController extends Controller
     public function edit($id)
     {
         $contact = Contact::find($id);
+        $title = "Update Contact: " . $contact->first_name . " " . $contact->last_name;
 
         //return view('contacts.edit', compact('contact'));
-        return view('contacts.edit')->with('contact', $contact);
+        return view('contacts.edit', compact('contact', 'title'));
     }
 
     /**

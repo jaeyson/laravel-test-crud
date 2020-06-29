@@ -1,10 +1,9 @@
 @extends('layouts.app')
-
+@section('title', $title)
 @section('content')
 <div class="row justify-content-center">
   <div class="col-sm-4">
-    <h3>Update contact</h3>
-
+<h5>{{$title}}</h5>
     @if ($errors->any())
     <div class="alert alert-danger">
       <ul>
@@ -35,9 +34,8 @@
         <input type="text" name="address" value="{{ $contact->address }}" class="form-control">
       </div>
 
-      <button type="submit" class="btn btn-primary-outline">update</button>
-      <a href="{{ route('contacts.index') }}" class="btn btn-primary">cancel</a>
-
+      <button type="submit" class="btn btn-primary">update</button>
+      <a href="{{ route('contacts.index') }}" class="btn btn-primary-outline">cancel</a>
     </form>
   </div>
 </div>

@@ -9,11 +9,29 @@ use App\User;
 
 class AccountController extends Controller
 {
-  //public function show(int $id) : \Illuminate\Http\Response
-  public function show(int $id)
+  //public function edit(int $id) : \Illuminate\Http\Response
+  public function edit(int $id)
   {
     $user = User::where('id', $id)->first();
+    $title = "Account settings: " . Auth::user()->name;
 
-    return view('accounts.index')->with('user', $user);
+    return view('accounts.index', compact('user', 'title'));
+  }
+
+  public function update(Request $request, $id)
+  {
+    $request->validate([
+      'email'=>'required',
+      'name'=>'required'
+    ]);
+
+    $user = User::find($id);
+
+    $user->name = $request->get('name');
+    $user->email = $request->get('email');
+    $user->save();
+
+    return redirect('/contacts')->with('success', 'updated...');
+
   }
 }

@@ -5,10 +5,11 @@
   $year = $date_created->format('Y');
 @endphp
 @extends('layouts.app')
+@section('title', $title)
 @section('content')
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-2">
+    <div class="col-3">
       <div class="list-group">
         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active disabled">
           <div class="d-flex w-100 justify-content-between">
@@ -26,15 +27,18 @@
     </div>
 
     <div class="col-6">
-      <form>
+      <form method="post" action="{{route('accounts.update', $user->id)}}">
+        @method('PATCH')
+        @csrf
+
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label hidden for="email">Email</label>
-            <input type="email" class="form-control" id="email" value="{{$user->email}}">
+            <label hidden for="name">Full Name</label>
+            <input type="text" class="form-control" name="name" value="{{$user->name}}">
           </div>
           <div class="form-group col-md-6">
-            <label hidden for="name">Full Name</label>
-            <input type="text" class="form-control" id="name" value="{{$user->name}}">
+            <label hidden for="email">Email</label>
+            <input type="email" class="form-control" name="email" value="{{$user->email}}">
           </div>
         </div>
         <div class="form-group">
