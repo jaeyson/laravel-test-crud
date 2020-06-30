@@ -11,12 +11,13 @@
         "php": "^7.4.7",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^6.3",
+        "guzzlehttp/guzzle": "^7.0",
         "itsgoingd/clockwork": "^4.1",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "livewire/livewire": "^1.2"
+        "livewire/livewire": "^1.2",
+        "quickemailverification/quickemailverification": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

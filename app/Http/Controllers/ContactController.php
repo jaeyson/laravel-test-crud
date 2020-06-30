@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-//use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use App\Contact;
 
 class ContactController extends Controller
@@ -23,11 +24,20 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //$contacts = Contact::where('user_id', Auth::id())->get();
-        $contacts = Contact::find(Auth::id())->get();
+        $contacts = Contact::where('user_id', Auth::id())->get();
+        // $contacts = Contact::find(Auth::id())->get();
         $title = Auth::user()->name . ": Contact List";
 
-        return view('contacts.index', compact('contacts', 'title'));
+        return Http::get(env('MYEMAILVERIFY_ENDPOINT', ''), [
+            'email' => 'hello@jaeyson.ml',
+            'apikey' => env('MYEMAILVERIFY_APIKEY', '')
+        ])->json();
+
+        // return env('APP_NAME', '???');
+
+        // Log::info('jsondata', $response);
+
+        // return view('contacts.index', compact('contacts', 'title'));
     }
 
     /**
