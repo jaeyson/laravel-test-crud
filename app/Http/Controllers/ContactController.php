@@ -13,7 +13,7 @@ class ContactController extends Controller
     // All actions are guarded by auth
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'verified']);
     }
 
     /**
