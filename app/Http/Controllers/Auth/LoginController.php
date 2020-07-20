@@ -21,7 +21,10 @@ class LoginController extends Controller
     public function signIn()
     {
         //todo: firebase service
-        $this->auth->signInWithEmailAndPassword('john.smith@email.co', 'test1234');
-        dd($this->auth->)
+        // $this->auth->signInWithEmailAndPassword('john.smith@email.co', 'test1234');
+        $result = $this->auth->getUserByEmail('john.smith@email.co');
+        return response()->json([
+            'data' => $result
+        ], 200);
     }
 }

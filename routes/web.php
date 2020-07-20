@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Route::get('/login', 'Auth\LoginController@index')->name('login.index');
-Route::get('/login', 'Auth\LoginController@signIn')->name('login.signIn');
+// Route::get('/login', 'Auth\LoginController@signIn')->name('login.signIn');
