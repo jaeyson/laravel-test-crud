@@ -8,15 +8,15 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4.7",
+        "php": "^7.2.5",
         "fideloper/proxy": "^4.2",
-        "fruitcake/laravel-cors": "^2.0",
+        "fruitcake/laravel-cors": "^1.0",
+        "google/cloud-firestore": "^1.14",
+        "grpc/grpc": "^v1.27.0",
         "guzzlehttp/guzzle": "^6.3",
-        "itsgoingd/clockwork": "^4.1",
+        "kreait/laravel-firebase": "^2.2",
         "laravel/framework": "^7.0",
-        "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.0",
-        "livewire/livewire": "^1.2"
+        "laravel/tinker": "^2.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
